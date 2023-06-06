@@ -69,6 +69,7 @@
           "visible": true,
           "type": "text",
           "name": "class_name",
+          "placeholder": "For e.g cmdb_ci_computer",
           "tooltip": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
         },
         {
@@ -150,6 +151,7 @@
           "visible": true,
           "type": "text",
           "name": "class_name",
+          "placeholder": "For e.g cmdb_ci_computer",
           "tooltip": "Specify the Configuration Management Database class name based on which you want to retrieve available configuration items (CI) for a specified Configuration Management Database."
         },
         {
@@ -204,6 +206,7 @@
           "visible": true,
           "type": "text",
           "name": "class_name",
+          "placeholder": "For e.g cmdb_ci_computer",
           "tooltip": "Specify the Configuration Management Database class name based on which you want to retrieve configuration item (CI) details."
         },
         {
@@ -235,6 +238,7 @@
           "visible": true,
           "type": "text",
           "name": "class_name",
+          "placeholder": "For e.g cmdb_ci_computer",
           "tooltip": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
         },
         {
@@ -306,6 +310,7 @@
           "visible": true,
           "type": "text",
           "name": "class_name",
+          "placeholder": "For e.g cmdb_ci_computer",
           "tooltip": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
         },
         {
@@ -387,6 +392,7 @@
           "visible": true,
           "type": "text",
           "name": "class_name",
+          "placeholder": "For e.g cmdb_ci_computer",
           "tooltip": "Specify the Configuration Management Database class name based on which you want to remove relation for configuration item (CI)."
         },
         {
