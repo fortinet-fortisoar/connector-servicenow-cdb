@@ -1,0 +1,416 @@
+{
+  "name": "servicenow-cmdb",
+  "label": "ServiceNow CMDB",
+  "version": "1.0.0",
+  "description": "ServiceNow Configuration Management Database (CMDB) is a centralized source that gives you full visibility into your IT environment. By storing information about your organization's infrastructure and how it is configured, this system allows you to monitor your network and ensure stability and best performance.",
+  "publisher": "Fortinet",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "IT Services",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "ingestion_supported": false,
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "description": "Specify the URL of the servicenow server to connect and perform automated operations.",
+        "type": "text",
+        "name": "server_url",
+        "required": true,
+        "editable": true,
+        "visible": true
+      },
+      {
+        "title": "Username",
+        "description": "Specify the username to access the servicenow server to connect and perform automated operations.",
+        "type": "text",
+        "name": "username",
+        "required": true,
+        "editable": true,
+        "visible": true
+      },
+      {
+        "title": "Password",
+        "description": "Specify the password to access the servicenow server to connect and perform automated operations.",
+        "type": "password",
+        "name": "password",
+        "required": true,
+        "editable": true,
+        "visible": true
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is set to True.",
+        "name": "verify_ssl",
+        "type": "checkbox",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "create_configuration_item",
+      "title": "Create Configuration Item",
+      "description": "Creates a single configuration item (CI) with the specified outbound and inbound relations within the specified Configuration Management Database (CMDB) table.",
+      "category": "investigation",
+      "annotation": "create_configuration_item",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Class Name",
+          "description": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "class_name",
+          "tooltip": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
+        },
+        {
+          "title": "Attributes",
+          "description": "Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "attributes",
+          "tooltip": "Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer."
+        },
+        {
+          "title": "Discovery Source",
+          "description": "Entity that updated the information. This must be one of the choice values specified in the option field.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "source",
+          "tooltip": "Entity that updated the information. This must be one of the choice values specified in the option field.",
+          "options": [
+            "ACC-Visibility",
+            "AgentClientCollector",
+            "Altiris",
+            "Cloud Insights Billing",
+            "CredentiallessDiscovery",
+            "EventManagement",
+            "Health Log Analytics",
+            "ImportSet",
+            "LANDesk",
+            "Manual Entry",
+            "MS SMS",
+            "OpenView",
+            "Other Automated",
+            "PatternDesigner",
+            "ServiceNow",
+            "ServiceWatch",
+            "SNAssetManagement",
+            "Tivoli"
+          ]
+        },
+        {
+          "title": "Inbound Relations",
+          "description": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "inbound_relations",
+          "tooltip": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item."
+        },
+        {
+          "title": "Outbound Relations",
+          "description": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "outbound_relations",
+          "tooltip": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "operation": "get_configuration_items",
+      "title": "Get Configuration Items",
+      "description": "Retrieves the available configuration items (CI) for a specified Configuration Management Database (CMDB) class (table).",
+      "category": "investigation",
+      "annotation": "get_configuration_items",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Class Name",
+          "description": "Specify the Configuration Management Database class name based on which you want to retrieve available configuration items (CI) for a specified Configuration Management Database.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "class_name",
+          "tooltip": "Specify the Configuration Management Database class name based on which you want to retrieve available configuration items (CI) for a specified Configuration Management Database."
+        },
+        {
+          "title": "Query",
+          "tooltip": "(Optional) Query using which you want to filter configuration items (CI) for a specified Configuration Management Database. Syntax: <col_name><operator><value> For e.g. javascript:gs.getUserID()^active=true, etc.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "sysparm_query",
+          "placeholder": "For e.g. javascript:gs.getUserID()^active=true, active=true^ORDERBYnumber^ORDERBYDESCcategory, etc.",
+          "description": "(Optional) Query using which you want to filter configuration items (CI) for a specified Configuration Management Database."
+        },
+        {
+          "title": "Limit",
+          "description": "(Optional) Specify the maximum number of results, per page, that this operation should return. By default, this option is set as 1000.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "sysparm_limit",
+          "value": 1000,
+          "tooltip": "(Optional) The maximum number of records to return. By default, this option is set as 1000"
+        },
+        {
+          "title": "Offset",
+          "description": "(Optional) Index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items. By default, this is set as 0",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "sysparm_offset",
+          "value": 0,
+          "tooltip": "(Optional) The number of records to skip past. By default, this option is set as 0"
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "operation": "get_configuration_item_details",
+      "title": "Get Configuration Item Details",
+      "description": "Retrieve the attributes and relationship information for a specified configuration item (CI) record.",
+      "category": "investigation",
+      "annotation": "get_configuration_item_details",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Class Name",
+          "description": "Specify the Configuration Management Database class name based on which you want to retrieve configuration item (CI) details.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "class_name",
+          "tooltip": "Specify the Configuration Management Database class name based on which you want to retrieve configuration item (CI) details."
+        },
+        {
+          "title": "System ID",
+          "description": "Specify the Sys ID of the configuration item (CI) based on which you want to retrieve configuration item (CI) details..",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "sys_id",
+          "tooltip": "Specify the Sys ID of the configuration item (CI) based on which you want to retrieve configuration item (CI) details."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "operation": "update_configuration_item",
+      "title": "Update Configuration Item",
+      "description": "Updates an single configuration item (CI) with the specified outbound and inbound relations within the specified Configuration Management Database (CMDB) table.",
+      "category": "investigation",
+      "annotation": "update_configuration_item",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Class Name",
+          "description": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "class_name",
+          "tooltip": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
+        },
+        {
+          "title": "System ID",
+          "description": "Specify the Sys ID of the configuration item (CI) based on which you want to update configuration item (CI) details..",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "sys_id",
+          "tooltip": "Specify the Sys ID of the configuration item (CI) based on which you want to update configuration item (CI) details."
+        },
+        {
+          "title": "Discovery Source",
+          "description": "Entity that updated the information. This must be one of the choice values specified in the option field.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "source",
+          "tooltip": "Entity that updated the information. This must be one of the choice values specified in the option field.",
+          "options": [
+            "ACC-Visibility",
+            "AgentClientCollector",
+            "Altiris",
+            "Cloud Insights Billing",
+            "CredentiallessDiscovery",
+            "EventManagement",
+            "Health Log Analytics",
+            "ImportSet",
+            "LANDesk",
+            "Manual Entry",
+            "MS SMS",
+            "OpenView",
+            "Other Automated",
+            "PatternDesigner",
+            "ServiceNow",
+            "ServiceWatch",
+            "SNAssetManagement",
+            "Tivoli"
+          ]
+        },
+        {
+          "title": "Attributes",
+          "description": "(Optional) Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "attributes",
+          "tooltip": "(Optional) Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "operation": "add_relation_to_configuration_item",
+      "title": "Add Relation to Configuration Item",
+      "description": "Adds an inbound and/or outbound relation to the specified configuration item (CI), the specified configuration item is the parent",
+      "category": "investigation",
+      "annotation": "add_relation_to_configuration_item",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Class Name",
+          "description": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "class_name",
+          "tooltip": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
+        },
+        {
+          "title": "System ID",
+          "description": "Specify the Sys ID of the configuration item (CI) based on which you want to add relation to the configuration item (CI).",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "sys_id",
+          "tooltip": "Specify the Sys ID of the configuration item (CI) based on which you want to add relation to the configuration item (CI) details."
+        },
+        {
+          "title": "Discovery Source",
+          "description": "Entity that updated the information. This must be one of the choice values specified in the option field.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "source",
+          "tooltip": "Entity that updated the information. This must be one of the choice values specified in the option field.",
+          "options": [
+            "ACC-Visibility",
+            "AgentClientCollector",
+            "Altiris",
+            "Cloud Insights Billing",
+            "CredentiallessDiscovery",
+            "EventManagement",
+            "Health Log Analytics",
+            "ImportSet",
+            "LANDesk",
+            "Manual Entry",
+            "MS SMS",
+            "OpenView",
+            "Other Automated",
+            "PatternDesigner",
+            "ServiceNow",
+            "ServiceWatch",
+            "SNAssetManagement",
+            "Tivoli"
+          ]
+        },
+        {
+          "title": "Inbound Relations",
+          "description": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "inbound_relations",
+          "tooltip": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item."
+        },
+        {
+          "title": "Outbound Relations",
+          "description": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "outbound_relations",
+          "tooltip": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "operation": "delete_relation_for_configuration_item",
+      "title": "Delete Relation for Configuration Item",
+      "description": "Deletes the relation for the specified configuration item (CI).",
+      "category": "investigation",
+      "annotation": "delete_relation_for_configuration_item",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Class Name",
+          "description": "Specify the Configuration Management Database class name based on which you want to remove relation for configuration item (CI).",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "class_name",
+          "tooltip": "Specify the Configuration Management Database class name based on which you want to remove relation for configuration item (CI)."
+        },
+        {
+          "title": "System ID",
+          "description": "Specify the Sys ID of the configuration item (CI) based on which you want to remove relation for configuration item (CI).",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "sys_id",
+          "tooltip": "Specify the Sys ID of the configuration item (CI) based on which you want to remove relation for configuration item (CI)."
+        },
+        {
+          "title": "Relation System ID",
+          "description": "Specify the Sys ID of the relation based on which you want to remove relation for configuration item (CI).",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "rel_sys_id",
+          "tooltip": "Specify the Sys ID of the relation based on which you want to remove relation for configuration item (CI)."
+        }
+      ],
+      "output_schema": {}
+    }
+  ]
+}
