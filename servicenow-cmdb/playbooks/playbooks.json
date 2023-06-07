@@ -1,0 +1,608 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - ServiceNow CMDB - 1.0.0",
+      "description": "Sample playbooks for \"ServiceNow CMDB\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": null,
+      "uuid": "decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+      "id": 555,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [
+        "Servicenow",
+        "servicenow-cmdb"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Configuration Item Details",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Retrieve the attributes and relationship information for a specified configuration item (CI) record.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d8e44048-4748-4d56-a51d-5439df19120f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Configuration Item Details",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "get_configuration_item_details",
+                "operationTitle": "Get Configuration Item Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "7c85b766-97ed-4be6-81cc-646307b9182f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "5fb26b77-e59d-460f-863c-b6ba0d40c01a",
+                "title": "ServiceNow CMDB: Get Configuration Item Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "d8e44048-4748-4d56-a51d-5439df19120f"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Configuration Item Details",
+              "targetStep": "/api/3/workflow_steps/7c85b766-97ed-4be6-81cc-646307b9182f",
+              "sourceStep": "/api/3/workflow_steps/d8e44048-4748-4d56-a51d-5439df19120f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "7f1ca5ce-a2b0-4d39-a2fc-e6d3e426cd45"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "0091f265-0207-4af6-8978-584c97826291",
+          "id": 7243,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Add Relation to Configuration Item",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Adds an inbound and/or outbound relation to the specified configuration item (CI), the specified configuration item is the parent",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1686030194,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/7ac1cf1d-dfa4-4873-863a-7037a8ce0b1d",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "c9b2ef39-9ef8-4fcb-a5f9-0e39ebf7575d",
+                "title": "ServiceNow CMDB: Add Relation to Configuration Item",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "7ac1cf1d-dfa4-4873-863a-7037a8ce0b1d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Add Relation to Configuration Item",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "source": "Other Automated",
+                  "sys_id": "04d9447f978361108e8cd48ef053afa2",
+                  "class_name": "cmdb_ci_computer",
+                  "inbound_relations": "[\n  {\n    \"target\": \"\",\n    \"type\": \"\"\n  }\n]",
+                  "outbound_relations": "[\n  {\n    \"target\": \"\",\n    \"type\": \"\"\n  }\n]"
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "add_relation_to_configuration_item",
+                "operationTitle": "Add Relation to Configuration Item",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "c6661516-c188-4e41-bbcd-4e6521a6648e"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Add Relation to Configuration Item",
+              "targetStep": "/api/3/workflow_steps/c6661516-c188-4e41-bbcd-4e6521a6648e",
+              "sourceStep": "/api/3/workflow_steps/7ac1cf1d-dfa4-4873-863a-7037a8ce0b1d",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "7f3ed9ec-1f1e-4b2a-b0b6-18aca58e2966"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "0cd79ba7-a865-4c85-85ef-2a9bd9a3f459",
+          "id": 7245,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Delete Relation for Configuration Item",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Deletes the relation for the specified configuration item (CI).",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1686030226,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/baec7354-1ef9-45b4-880c-736d7f12878f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Delete Relation for Configuration Item",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "sys_id": "04d9447f978361108e8cd48ef053afa2",
+                  "class_name": "cmdb_ci_computer",
+                  "rel_sys_id": "04d9447f978361108e8cd48ef053afa2"
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "delete_relation_for_configuration_item",
+                "operationTitle": "Delete Relation for Configuration Item",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0d26d596-4db1-450d-85d6-1c337cb8b621"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "7b0bdfa9-c5a3-4fb8-ac4d-9b9b1f2bb1f8",
+                "title": "ServiceNow CMDB: Delete Relation for Configuration Item",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "baec7354-1ef9-45b4-880c-736d7f12878f"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Delete Relation for Configuration Item",
+              "targetStep": "/api/3/workflow_steps/0d26d596-4db1-450d-85d6-1c337cb8b621",
+              "sourceStep": "/api/3/workflow_steps/baec7354-1ef9-45b4-880c-736d7f12878f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ba19d359-909f-4d7c-8872-f831eb66394a"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "1a0f1461-1d53-48b8-9a0b-f76636d1d53f",
+          "id": 7246,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update Configuration Item",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Updates an single configuration item (CI) with the specified outbound and inbound relations within the specified Configuration Management Database (CMDB) table.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1686030052,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/7ee50404-8b5c-4e69-8ca6-0078060aeb92",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "456e4694-b63f-454e-98fc-99a450dfcd2c",
+                "title": "ServiceNow CMDB: Update Configuration Item",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "7ee50404-8b5c-4e69-8ca6-0078060aeb92"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Configuration Item",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "source": "Other Automated",
+                  "sys_id": "04d9447f978361108e8cd48ef053afa2",
+                  "attributes": "{\n  \"name\": \"\"\n}",
+                  "class_name": "cmdb_ci_computer"
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "update_configuration_item",
+                "operationTitle": "Update Configuration Item",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "c3496779-1e5e-43fa-b5fb-dafe85a7aab6"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Update Configuration Item",
+              "targetStep": "/api/3/workflow_steps/c3496779-1e5e-43fa-b5fb-dafe85a7aab6",
+              "sourceStep": "/api/3/workflow_steps/7ee50404-8b5c-4e69-8ca6-0078060aeb92",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "7428fbd6-e0fb-4b28-a93d-a54338b79ab5"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "3f163c2f-bd8a-4ea0-bc1a-531560b5d2d3",
+          "id": 7244,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Create Configuration Item",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Creates a single configuration item (CI) with the specified outbound and inbound relations within the specified Configuration Management Database (CMDB) table.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1686030000,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/aa703a45-d171-496a-83dc-56112ce51d24",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Create Configuration Item",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "source": "Other Automated",
+                  "attributes": "{\n  \"name\": \"\"\n}",
+                  "class_name": "cmdb_ci_computer",
+                  "inbound_relations": "[\n  {\n    \"type\" : \"\",\n    \"target\" : \"\"\n  }\n]",
+                  "outbound_relations": "[\n  {\n    \"type\" : \"\",\n    \"target\" : \"\"\n  }\n]"
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "create_configuration_item",
+                "operationTitle": "Create Configuration Item",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "8f422bd0-1ef1-4911-b33e-70c5f088bb6d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "d6d4f4fd-bade-4e54-abb7-a67ef2dd99e2",
+                "title": "ServiceNow CMDB: Create Configuration Item",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "aa703a45-d171-496a-83dc-56112ce51d24"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Create Configuration Item",
+              "targetStep": "/api/3/workflow_steps/8f422bd0-1ef1-4911-b33e-70c5f088bb6d",
+              "sourceStep": "/api/3/workflow_steps/aa703a45-d171-496a-83dc-56112ce51d24",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "2303e169-98ff-4b2a-b9d0-579ff7d78044"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "4bb3fc6e-ee7e-4366-91a0-8c360922d550",
+          "id": 7241,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Configuration Items",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Retrieves the available configuration items (CI) for a specified Configuration Management Database (CMDB) class (table).",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/00279db3-07d0-4c80-8ded-857edb305c3f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "c6302346-9137-4c8a-a3cc-ebf2cb88eab2",
+                "title": "ServiceNow CMDB: Get Configuration Items",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "00279db3-07d0-4c80-8ded-857edb305c3f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Configuration Items",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "sysparm_limit": 1000,
+                  "sysparm_offset": 0
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "get_configuration_items",
+                "operationTitle": "Get Configuration Items",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "5101d988-4944-4236-8de2-d841fa6d5f45"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Configuration Items",
+              "targetStep": "/api/3/workflow_steps/5101d988-4944-4236-8de2-d841fa6d5f45",
+              "sourceStep": "/api/3/workflow_steps/00279db3-07d0-4c80-8ded-857edb305c3f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "bcb8680d-3840-46da-a9f6-acf82d297387"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "cef2baa7-530d-492c-ae00-4c7e80df4fc2",
+          "id": 7242,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "Servicenow",
+    "servicenow-cmdb"
+  ]
+}
