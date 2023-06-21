@@ -18,7 +18,7 @@ class Servicenow(object):
         if not url.startswith('https://') and not url.startswith('http://'):
             self.url = 'https://{0}/api/now'.format(url)
         else:
-            self.url = url + '/api/now/'
+            self.url = url + '/api/now'
         self.verify_ssl = config.get('verify_ssl')
 
     def make_rest_call(self, url, method, data=None, params=None):
@@ -121,7 +121,8 @@ def login(config, params):
     headers = {
         'Accept': 'application/json'
     }
-    response = requests.request(method='GET', url=endpoint, params=params, headers=headers,
+    response = requests.request(method='GET', url=endpoint, params=params,
+                                auth=(config.get('username'), config.get('password')), headers=headers,
                                 verify=config.get('verify_ssl'))
     return response
 
