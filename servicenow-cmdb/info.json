@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "ServiceNow Configuration Management Database (CMDB) is a centralized source that gives you full visibility into your IT environment. By storing information about your organization's infrastructure and how it is configured, this system allows you to monitor your network and ensure stability and best performance.",
   "publisher": "Fortinet",
-  "cs_approved": false,
+  "cs_approved": true,
   "cs_compatible": true,
   "category": "IT Services",
   "icon_small_name": "small.png",
