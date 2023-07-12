@@ -8,7 +8,7 @@
       "visible": true,
       "image": null,
       "uuid": "decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
-      "id": 555,
+      "id": 63,
       "deletedAt": null,
       "importedBy": [],
       "recordTags": [
@@ -29,7 +29,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": null,
+          "lastModifyDate": 1689099068,
           "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/d8e44048-4748-4d56-a51d-5439df19120f",
@@ -41,18 +41,19 @@
               "arguments": {
                 "name": "ServiceNow CMDB",
                 "config": "",
-                "params": [],
+                "params": {
+                  "sys_id": "cc560b14974cb110bbbdb696f053af5c",
+                  "class_name": "cmdb_ci_computer"
+                },
                 "version": "1.0.0",
                 "connector": "servicenow-cmdb",
                 "operation": "get_configuration_item_details",
                 "operationTitle": "Get Configuration Item Details",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "step_variables": []
               },
               "status": null,
-              "top": "120",
-              "left": "188",
+              "top": "165",
+              "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
               "uuid": "7c85b766-97ed-4be6-81cc-646307b9182f"
@@ -78,8 +79,8 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "20",
-              "left": "20",
+              "top": "30",
+              "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
               "uuid": "d8e44048-4748-4d56-a51d-5439df19120f"
@@ -99,7 +100,7 @@
           "groups": [],
           "priority": null,
           "uuid": "0091f265-0207-4af6-8978-584c97826291",
-          "id": 7243,
+          "id": 693,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -122,7 +123,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1686030194,
+          "lastModifyDate": 1689099031,
           "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/7ac1cf1d-dfa4-4873-863a-7037a8ce0b1d",
@@ -172,9 +173,7 @@
                 "connector": "servicenow-cmdb",
                 "operation": "add_relation_to_configuration_item",
                 "operationTitle": "Add Relation to Configuration Item",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "step_variables": []
               },
               "status": null,
               "top": "165",
@@ -198,7 +197,7 @@
           "groups": [],
           "priority": null,
           "uuid": "0cd79ba7-a865-4c85-85ef-2a9bd9a3f459",
-          "id": 7245,
+          "id": 694,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -221,7 +220,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1686030226,
+          "lastModifyDate": 1689099004,
           "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/baec7354-1ef9-45b4-880c-736d7f12878f",
@@ -242,9 +241,7 @@
                 "connector": "servicenow-cmdb",
                 "operation": "delete_relation_for_configuration_item",
                 "operationTitle": "Delete Relation for Configuration Item",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "step_variables": []
               },
               "status": null,
               "top": "165",
@@ -295,7 +292,103 @@
           "groups": [],
           "priority": null,
           "uuid": "1a0f1461-1d53-48b8-9a0b-f76636d1d53f",
-          "id": 7246,
+          "id": 695,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get CMDB Relation Type",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Retrieves the relation type of the Configuration Management Database (CMDB) class (table) based on the input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1689097614,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/74e5446e-d390-4349-8bb1-03c2740402b1",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get CMDB Relation Type",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "sysparm_limit": 1000,
+                  "sysparm_offset": 0
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "get_cmdb_rel_type",
+                "operationTitle": "Get CMDB Relation Type",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "0f626324-0935-4c64-9c19-b7aee891883e"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1d3f4bfc-80d5-4b8d-924e-c938e0d96745",
+                "title": "ServiceNow CMDB: Get CMDB Relation Type",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "74e5446e-d390-4349-8bb1-03c2740402b1"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get CMDB Relation Type",
+              "targetStep": "/api/3/workflow_steps/0f626324-0935-4c64-9c19-b7aee891883e",
+              "sourceStep": "/api/3/workflow_steps/74e5446e-d390-4349-8bb1-03c2740402b1",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a7704f8a-a5e8-4c72-ba60-bba5874d2e14"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "2c5de501-8ed7-4cce-9643-5b08cea958d1",
+          "id": 699,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -318,7 +411,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1686030052,
+          "lastModifyDate": 1689106445,
           "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/7ee50404-8b5c-4e69-8ca6-0078060aeb92",
@@ -358,18 +451,18 @@
                 "name": "ServiceNow CMDB",
                 "config": "",
                 "params": {
+                  "name": "Testing",
                   "source": "Other Automated",
-                  "sys_id": "04d9447f978361108e8cd48ef053afa2",
+                  "sys_id": "cc560b14974cb110bbbdb696f053af5c",
                   "attributes": "{\n  \"name\": \"\"\n}",
-                  "class_name": "cmdb_ci_computer"
+                  "class_name": "cmdb_ci_computer",
+                  "short_description": ""
                 },
                 "version": "1.0.0",
                 "connector": "servicenow-cmdb",
                 "operation": "update_configuration_item",
                 "operationTitle": "Update Configuration Item",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "step_variables": []
               },
               "status": null,
               "top": "165",
@@ -393,7 +486,7 @@
           "groups": [],
           "priority": null,
           "uuid": "3f163c2f-bd8a-4ea0-bc1a-531560b5d2d3",
-          "id": 7244,
+          "id": 696,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -416,7 +509,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1686030000,
+          "lastModifyDate": 1689099128,
           "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/aa703a45-d171-496a-83dc-56112ce51d24",
@@ -429,19 +522,19 @@
                 "name": "ServiceNow CMDB",
                 "config": "",
                 "params": {
+                  "name": "Sample",
                   "source": "Other Automated",
                   "attributes": "{\n  \"name\": \"\"\n}",
                   "class_name": "cmdb_ci_computer",
-                  "inbound_relations": "[\n  {\n    \"type\" : \"\",\n    \"target\" : \"\"\n  }\n]",
-                  "outbound_relations": "[\n  {\n    \"type\" : \"\",\n    \"target\" : \"\"\n  }\n]"
+                  "inbound_relations": "[\n  {\n    \"target\": \"\",\n    \"type\": \"\"\n  } \n]",
+                  "short_description": "",
+                  "outbound_relations": "[\n  {\n    \"target\": \"\",\n    \"type\": \"\"\n  } \n]"
                 },
                 "version": "1.0.0",
                 "connector": "servicenow-cmdb",
                 "operation": "create_configuration_item",
                 "operationTitle": "Create Configuration Item",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "step_variables": []
               },
               "status": null,
               "top": "165",
@@ -492,7 +585,102 @@
           "groups": [],
           "priority": null,
           "uuid": "4bb3fc6e-ee7e-4366-91a0-8c360922d550",
-          "id": 7241,
+          "id": 697,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get CMDB Relation Type by System ID",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Retrieves the relation type for a specific system ID of the Configuration Management Database (CMDB) class (table) based on the system ID and other input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1689097750,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/ddf90303-e5a9-4962-942a-b42b7d7345f6",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get CMDB Relation Type by System ID",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "sys_id": "015633570a0a0bc70029121512d46ede"
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "get_cmdb_rel_type_by_sys_id",
+                "operationTitle": "Get CMDB Relation Type by System ID",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "c9a691e0-743e-4e0d-9016-54850b85e80d"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "4acc56f8-eace-457b-8138-37e2dff87ce9",
+                "title": "ServiceNow CMDB: Get CMDB Relation Type by System ID",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "ddf90303-e5a9-4962-942a-b42b7d7345f6"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get CMDB Relation Type by System ID",
+              "targetStep": "/api/3/workflow_steps/c9a691e0-743e-4e0d-9016-54850b85e80d",
+              "sourceStep": "/api/3/workflow_steps/ddf90303-e5a9-4962-942a-b42b7d7345f6",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ce7ff774-cea3-4051-9fda-8b7589f81f60"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "86e85848-d89f-4e20-825e-ebc5c54a7978",
+          "id": 700,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -515,7 +703,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": null,
+          "lastModifyDate": 1689098993,
           "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/00279db3-07d0-4c80-8ded-857edb305c3f",
@@ -541,8 +729,8 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "20",
-              "left": "20",
+              "top": "30",
+              "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
               "group": null,
               "uuid": "00279db3-07d0-4c80-8ded-857edb305c3f"
@@ -555,20 +743,20 @@
                 "name": "ServiceNow CMDB",
                 "config": "",
                 "params": {
+                  "class_name": "cmdb_ci_computer",
                   "sysparm_limit": 1000,
+                  "sysparm_query": "",
                   "sysparm_offset": 0
                 },
                 "version": "1.0.0",
                 "connector": "servicenow-cmdb",
                 "operation": "get_configuration_items",
                 "operationTitle": "Get Configuration Items",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "step_variables": []
               },
               "status": null,
-              "top": "120",
-              "left": "188",
+              "top": "165",
+              "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
               "uuid": "5101d988-4944-4236-8de2-d841fa6d5f45"
@@ -588,7 +776,7 @@
           "groups": [],
           "priority": null,
           "uuid": "cef2baa7-530d-492c-ae00-4c7e80df4fc2",
-          "id": 7242,
+          "id": 698,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,

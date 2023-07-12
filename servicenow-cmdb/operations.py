@@ -25,7 +25,8 @@ class Servicenow(object):
         try:
             url = self.url + url
             headers = {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
             logger.debug("Endpoint {0}".format(url))
             response = requests.request(method, url, data=data, params=params, auth=(self.username, self.password),
@@ -71,8 +72,30 @@ def check_payload(payload):
 def create_configuration_item(config, params):
     sn = Servicenow(config)
     endpoint = '/cmdb/instance/{0}'.format(params.pop('class_name'))
+    params.update({
+        'attributes': {
+            'name': params.pop('name'),
+            'short_description': params.pop('short_description', '')
+        }
+    })
+    params.update({'attributes': params.pop('attributes', {})})
     payload = check_payload(params)
     response = sn.make_rest_call(endpoint, 'POST', data=json.dumps(payload))
+    return response
+
+
+def get_cmdb_rel_type(config, params):
+    sn = Servicenow(config)
+    endpoint = '/table/cmdb_rel_type'
+    payload = check_payload(params)
+    response = sn.make_rest_call(endpoint, 'GET', params=payload)
+    return response
+
+
+def get_cmdb_rel_type_by_sys_id(config, params):
+    sn = Servicenow(config)
+    endpoint = '/table/cmdb_rel_type/{0}'.format(params.get('sys_id'))
+    response = sn.make_rest_call(endpoint, 'GET')
     return response
 
 
@@ -94,7 +117,17 @@ def get_configuration_item_details(config, params):
 def update_configuration_item(config, params):
     sn = Servicenow(config)
     endpoint = '/cmdb/instance/{0}/{1}'.format(params.pop('class_name'), params.pop('sys_id'))
-    payload = check_payload(params)
+    attributes = check_payload(params.get('attributes'))
+    payload = {
+        'attributes': {
+            'name': params.get('name'),
+            'short_description': params.get('short_description')
+        },
+        'source': params.get('source')
+    }
+    payload['attributes'].update(attributes)
+    payload = check_payload(payload)
+    logger.debug("Payload: {0}".format(payload))
     response = sn.make_rest_call(endpoint, 'PUT', data=json.dumps(payload))
     return response
 
@@ -144,5 +177,7 @@ operations = {
     'get_configuration_item_details': get_configuration_item_details,
     'update_configuration_item': update_configuration_item,
     'add_relation_to_configuration_item': add_relation_to_configuration_item,
-    'delete_relation_for_configuration_item': delete_relation_for_configuration_item
+    'delete_relation_for_configuration_item': delete_relation_for_configuration_item,
+    'get_cmdb_rel_type': get_cmdb_rel_type,
+    'get_cmdb_rel_type_by_sys_id': get_cmdb_rel_type_by_sys_id
 }
