@@ -73,26 +73,6 @@
           "tooltip": "Specify the Configuration Management Database class name. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
         },
         {
-          "title": "Configuration Item Name",
-          "description": "Specify the name of the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB)",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "name",
-          "tooltip": "Specify the name of the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB)"
-        },
-        {
-          "title": "Attributes",
-          "description": "Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer.",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "type": "json",
-          "name": "attributes",
-          "tooltip": "Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer."
-        },
-        {
           "title": "Discovery Source",
           "description": "Entity that updated the information. This must be one of the choice values specified in the option field.",
           "required": true,
@@ -123,6 +103,16 @@
           ]
         },
         {
+          "title": "Configuration Item Name",
+          "description": "Specify the name of the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB)",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "name",
+          "tooltip": "Specify the name of the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB)"
+        },
+        {
           "title": "Description",
           "description": "(Optional) Specify the description for the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB)",
           "required": false,
@@ -131,6 +121,16 @@
           "type": "text",
           "name": "short_description",
           "tooltip": "(Optional) Specify the description for the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB)"
+        },
+        {
+          "title": "Attributes",
+          "description": "(Optional) Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "attributes",
+          "tooltip": "(Optional) Data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer."
         },
         {
           "title": "Inbound Relations",
@@ -502,113 +502,6 @@
       }
     },
     {
-      "operation": "get_cmdb_rel_type",
-      "title": "Get CMDB Relation Type",
-      "description": "Retrieves the relation type of the Configuration Management Database (CMDB) class (table) based on the input parameters that you have specified.",
-      "category": "investigation",
-      "annotation": "get_cmdb_rel_type",
-      "enabled": true,
-      "parameters": [
-        {
-          "title": "Limit",
-          "description": "(Optional) Specify the maximum number of results, per page, that this operation should return. By default, this option is set as 1000.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "integer",
-          "name": "sysparm_limit",
-          "value": 1000,
-          "tooltip": "(Optional) The maximum number of records to return. By default, this option is set as 1000"
-        },
-        {
-          "title": "Offset",
-          "description": "(Optional) Index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items. By default, this is set as 0",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "integer",
-          "name": "sysparm_offset",
-          "value": 0,
-          "tooltip": "(Optional) The number of records to skip past. By default, this option is set as 0"
-        }
-      ],
-      "output_schema": {
-        "result": [
-          {
-            "child_descriptor": "",
-            "end_point": "",
-            "sys_mod_count": "",
-            "sys_updated_on": "",
-            "sys_tags": "",
-            "sys_class_name": "",
-            "sys_id": "",
-            "sys_package": {
-              "link": "",
-              "value": ""
-            },
-            "sys_update_name": "",
-            "sys_updated_by": "",
-            "sys_created_on": "",
-            "name": "",
-            "sys_name": "",
-            "sys_scope": {
-              "link": "",
-              "value": ""
-            },
-            "parent_descriptor": "",
-            "sys_created_by": "",
-            "sys_policy": ""
-          }
-        ]
-      }
-    },
-    {
-      "operation": "get_cmdb_rel_type_by_sys_id",
-      "title": "Get CMDB Relation Type by System ID",
-      "description": "Retrieves the relation type for a specific system ID of the Configuration Management Database (CMDB) class (table) based on the system ID and other input parameters that you have specified.",
-      "category": "investigation",
-      "annotation": "get_cmdb_rel_type_by_sys_id",
-      "enabled": true,
-      "parameters": [
-        {
-          "title": "System ID",
-          "description": "Specify the Sys ID of the configuration item (CI) based on which you want to retrieve relation type from Configuration Management Database (CMDB) class (table).",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "sys_id"
-        }
-      ],
-      "output_schema": {
-        "result": {
-          "child_descriptor": "",
-          "end_point": "",
-          "sys_mod_count": "",
-          "sys_updated_on": "",
-          "sys_tags": "",
-          "sys_class_name": "",
-          "sys_id": "",
-          "sys_package": {
-            "link": "",
-            "value": ""
-          },
-          "sys_update_name": "",
-          "sys_updated_by": "",
-          "sys_created_on": "",
-          "name": "",
-          "sys_name": "",
-          "sys_scope": {
-            "link": "",
-            "value": ""
-          },
-          "parent_descriptor": "",
-          "sys_created_by": "",
-          "sys_policy": ""
-        }
-      }
-    },
-    {
       "operation": "update_configuration_item",
       "title": "Update Configuration Item",
       "description": "Updates an single configuration item (CI) with the specified outbound and inbound relations within the specified Configuration Management Database (CMDB) table.",
@@ -823,6 +716,113 @@
             "lease_id": ""
           },
           "inbound_relations": []
+        }
+      }
+    },
+    {
+      "operation": "get_cmdb_rel_type",
+      "title": "Get CMDB Relation Type",
+      "description": "Retrieves the relation type of the Configuration Management Database (CMDB) class (table) based on the input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "get_cmdb_rel_type",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Limit",
+          "description": "(Optional) Specify the maximum number of results, per page, that this operation should return. By default, this option is set as 1000.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "sysparm_limit",
+          "value": 1000,
+          "tooltip": "(Optional) The maximum number of records to return. By default, this option is set as 1000"
+        },
+        {
+          "title": "Offset",
+          "description": "(Optional) Index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items. By default, this is set as 0",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "sysparm_offset",
+          "value": 0,
+          "tooltip": "(Optional) The number of records to skip past. By default, this option is set as 0"
+        }
+      ],
+      "output_schema": {
+        "result": [
+          {
+            "child_descriptor": "",
+            "end_point": "",
+            "sys_mod_count": "",
+            "sys_updated_on": "",
+            "sys_tags": "",
+            "sys_class_name": "",
+            "sys_id": "",
+            "sys_package": {
+              "link": "",
+              "value": ""
+            },
+            "sys_update_name": "",
+            "sys_updated_by": "",
+            "sys_created_on": "",
+            "name": "",
+            "sys_name": "",
+            "sys_scope": {
+              "link": "",
+              "value": ""
+            },
+            "parent_descriptor": "",
+            "sys_created_by": "",
+            "sys_policy": ""
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_cmdb_rel_type_by_sys_id",
+      "title": "Get CMDB Relation Type by System ID",
+      "description": "Retrieves the relation type for a specific system ID of the Configuration Management Database (CMDB) class (table) based on the system ID and other input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "get_cmdb_rel_type_by_sys_id",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "System ID",
+          "description": "Specify the Sys ID of the configuration item (CI) based on which you want to retrieve relation type from Configuration Management Database (CMDB) class (table).",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "sys_id"
+        }
+      ],
+      "output_schema": {
+        "result": {
+          "child_descriptor": "",
+          "end_point": "",
+          "sys_mod_count": "",
+          "sys_updated_on": "",
+          "sys_tags": "",
+          "sys_class_name": "",
+          "sys_id": "",
+          "sys_package": {
+            "link": "",
+            "value": ""
+          },
+          "sys_update_name": "",
+          "sys_updated_by": "",
+          "sys_created_on": "",
+          "name": "",
+          "sys_name": "",
+          "sys_scope": {
+            "link": "",
+            "value": ""
+          },
+          "parent_descriptor": "",
+          "sys_created_by": "",
+          "sys_policy": ""
         }
       }
     },
