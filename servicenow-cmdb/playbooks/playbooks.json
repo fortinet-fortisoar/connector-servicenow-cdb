@@ -8,7 +8,7 @@
       "visible": true,
       "image": null,
       "uuid": "decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
-      "id": 63,
+      "id": 68,
       "deletedAt": null,
       "importedBy": [],
       "recordTags": [
@@ -100,7 +100,7 @@
           "groups": [],
           "priority": null,
           "uuid": "0091f265-0207-4af6-8978-584c97826291",
-          "id": 693,
+          "id": 736,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -197,7 +197,7 @@
           "groups": [],
           "priority": null,
           "uuid": "0cd79ba7-a865-4c85-85ef-2a9bd9a3f459",
-          "id": 694,
+          "id": 737,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -292,7 +292,7 @@
           "groups": [],
           "priority": null,
           "uuid": "1a0f1461-1d53-48b8-9a0b-f76636d1d53f",
-          "id": 695,
+          "id": 738,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -388,7 +388,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "2c5de501-8ed7-4cce-9643-5b08cea958d1",
-          "id": 699,
+          "id": 739,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -486,7 +486,7 @@
           "groups": [],
           "priority": null,
           "uuid": "3f163c2f-bd8a-4ea0-bc1a-531560b5d2d3",
-          "id": 696,
+          "id": 740,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -585,7 +585,7 @@
           "groups": [],
           "priority": null,
           "uuid": "4bb3fc6e-ee7e-4366-91a0-8c360922d550",
-          "id": 697,
+          "id": 741,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -680,7 +680,7 @@
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
           "uuid": "86e85848-d89f-4e20-825e-ebc5c54a7978",
-          "id": 700,
+          "id": 742,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -776,7 +776,104 @@
           "groups": [],
           "priority": null,
           "uuid": "cef2baa7-530d-492c-ae00-4c7e80df4fc2",
-          "id": 698,
+          "id": 743,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Servicenow",
+            "servicenow-cmdb"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Custom API Endpoint",
+          "aliasName": null,
+          "tag": "#ServiceNow CMDB",
+          "description": "Allows querying a custom API endpoint in ServiceNow CMDB based on the endpoint and request you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1689232812,
+          "collection": "/api/3/workflow_collections/decfdc2b-62e3-4ffd-af6f-1a953c53cac2",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/980573f4-fb01-4dca-b427-5a84ead56dbb",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Custom API Endpoint",
+              "description": null,
+              "arguments": {
+                "name": "ServiceNow CMDB",
+                "config": "",
+                "params": {
+                  "body": "{}",
+                  "method": "GET",
+                  "endpoint": "https://<server_url>/api/now/table/cmdb_rel_type"
+                },
+                "version": "1.0.0",
+                "connector": "servicenow-cmdb",
+                "operation": "custom_endpoint",
+                "operationTitle": "Custom API Endpoint",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "2eb3bd97-c033-41e7-9c40-ff1e2a95e96c"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "267546ac-1fb5-4a87-b9a1-60b6ecd6eb47",
+                "title": "ServiceNow CMDB: Custom API Endpoint",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "980573f4-fb01-4dca-b427-5a84ead56dbb"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Custom API Endpoint",
+              "targetStep": "/api/3/workflow_steps/2eb3bd97-c033-41e7-9c40-ff1e2a95e96c",
+              "sourceStep": "/api/3/workflow_steps/980573f4-fb01-4dca-b427-5a84ead56dbb",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4f1564ac-3cd0-412b-8882-ed8363fd8d19"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "f7fe4768-d031-4cdf-97d6-01f236d2b15a",
+          "id": 744,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,

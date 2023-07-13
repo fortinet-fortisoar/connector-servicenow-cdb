@@ -9,6 +9,11 @@ from connectors.core.connector import ConnectorError, get_logger
 
 logger = get_logger('servicenow-cmdb')
 
+headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+}
+
 
 class Servicenow(object):
     def __init__(self, config, *args, **kwargs):
@@ -24,10 +29,6 @@ class Servicenow(object):
     def make_rest_call(self, url, method, data=None, params=None):
         try:
             url = self.url + url
-            headers = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
             logger.debug("Endpoint {0}".format(url))
             response = requests.request(method, url, data=data, params=params, auth=(self.username, self.password),
                                         headers=headers,
@@ -127,6 +128,11 @@ def update_configuration_item(config, params):
     }
     payload['attributes'].update(attributes)
     payload = check_payload(payload)
+    if not "attributes" in payload:
+        payload = {
+            'attributes': {},
+            'source': params.get('source')
+        }
     logger.debug("Payload: {0}".format(payload))
     response = sn.make_rest_call(endpoint, 'PUT', data=json.dumps(payload))
     return response
@@ -148,12 +154,24 @@ def delete_relation_for_configuration_item(config, params):
     return response
 
 
+def custom_endpoint(config, params):
+    endpoint = params.get('endpoint')
+    body = params.get('body')
+    method = params.get('method')
+    if method == "GET":
+        payload = check_payload(body)
+        data = None
+    else:
+        data = json.dumps(check_payload(body))
+        payload = None
+    response = requests.request(method=method, url=endpoint, auth=(config.get('username'), config.get('password')),
+                                headers=headers, params=payload, data=data, verify=config.get('verify_ssl'))
+    return response.json()
+
+
 def login(config, params):
     sn = Servicenow(config)
     endpoint = sn.url + "/attachment"
-    headers = {
-        'Accept': 'application/json'
-    }
     response = requests.request(method='GET', url=endpoint, params=params,
                                 auth=(config.get('username'), config.get('password')), headers=headers,
                                 verify=config.get('verify_ssl'))
@@ -179,5 +197,6 @@ operations = {
     'add_relation_to_configuration_item': add_relation_to_configuration_item,
     'delete_relation_for_configuration_item': delete_relation_for_configuration_item,
     'get_cmdb_rel_type': get_cmdb_rel_type,
-    'get_cmdb_rel_type_by_sys_id': get_cmdb_rel_type_by_sys_id
+    'get_cmdb_rel_type_by_sys_id': get_cmdb_rel_type_by_sys_id,
+    'custom_endpoint': custom_endpoint
 }
