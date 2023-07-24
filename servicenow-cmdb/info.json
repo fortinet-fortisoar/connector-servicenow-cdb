@@ -10,12 +10,12 @@
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "ingestion_supported": false,
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/servicenow-cmdb/635/servicenow-cmdb-v1-0-0",
   "configuration": {
     "fields": [
       {
         "title": "Server URL",
-        "description": "Specify the URL of the servicenow server to connect and perform automated operations.",
+        "description": "Specify the URL of the ServiceNow CMDB server to connect and perform automated operations.",
         "type": "text",
         "name": "server_url",
         "required": true,
@@ -24,7 +24,7 @@
       },
       {
         "title": "Username",
-        "description": "Specify the username to access the servicenow server to connect and perform automated operations.",
+        "description": "Specify the username to access the ServiceNow CMDB server to connect and perform automated operations.",
         "type": "text",
         "name": "username",
         "required": true,
@@ -33,7 +33,7 @@
       },
       {
         "title": "Password",
-        "description": "Specify the password to access the servicenow server to connect and perform automated operations.",
+        "description": "Specify the password to access the ServiceNow CMDB server to connect and perform automated operations.",
         "type": "password",
         "name": "password",
         "required": true,
@@ -42,7 +42,7 @@
       },
       {
         "title": "Verify SSL",
-        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is set to True.",
+        "description": "Specifies whether the SSL certificate for the server is to be verified.",
         "name": "verify_ssl",
         "type": "checkbox",
         "required": false,
@@ -56,31 +56,31 @@
     {
       "operation": "create_configuration_item",
       "title": "Create Configuration Item",
-      "description": "Creates a single configuration item (CI) with the specified outbound and inbound relations within the specified Configuration Management Database (CMDB) table. NOTE: If the CMDB class has a dependent identification rule defined, then the input payload must contain the sys_id of an existing CI. For example, for outbound_relations, the target parameter must contain the sys_id of an existing CI, which then becomes the child. For inbound_relations, it becomes the parent.",
+      "description": "Creates a single configuration item (CI) with the specified outbound and inbound relations within the specified ServiceNow Configuration Management Database (CMDB) table based on the class name, discovery name, CI name, and other input parameters you have specified.\nNOTE: If the CMDB class has a dependent identification rule defined, then the input payload must contain the sys_id of an existing CI. For example, for outbound_relations, the target parameter must contain the sys_id of an existing CI, which then becomes the child; whereas for inbound_relations, it becomes the parent.",
       "category": "investigation",
       "annotation": "create_configuration_item",
       "enabled": true,
       "parameters": [
         {
           "title": "Class Name",
-          "description": "Specify the class name of the configuration management database (CMDB) table based on which you want to create configuration item (CI) details. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server.",
+          "description": "Specify the class name of the configuration management database (CMDB) table in which you want to create the new configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "class_name",
           "placeholder": "For e.g cmdb_ci_computer",
-          "tooltip": "Specify the class name of the configuration management database (CMDB) table based on which you want to create configuration item (CI) details. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
+          "tooltip": "Specify the class name of the configuration management database (CMDB) table in which you want to create configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server, etc."
         },
         {
           "title": "Discovery Source",
-          "description": "Select a discovery source of the configuration item (CI) based on which you want to create configuration item (CI) details. You can choose from the following options: ACC-Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
+          "description": "Select a discovery source of the configuration item (CI) you want to create in the CMDB table. You can choose from the options such as ACC- Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "select",
           "name": "source",
-          "tooltip": "Select a discovery source of the configuration item (CI) based on which you want to create configuration item (CI) details. You can choose from the following options: ACC-Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
+          "tooltip": "Select a discovery source of the configuration item (CI) you want to create in the CMDB table. You can choose from the options such as ACC- Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
           "options": [
             "ACC-Visibility",
             "AgentClientCollector",
@@ -104,53 +104,53 @@
         },
         {
           "title": "Configuration Item Name",
-          "description": "Specify the name of the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB) table",
+          "description": "Specify the name of the configuration item that you want to create in the CMDB table.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "name",
-          "tooltip": "Specify the name of the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB) table"
+          "tooltip": "Specify the name of the configuration item that you want to create in the CMDB table."
         },
         {
           "title": "Description",
-          "description": "(Optional) Specify the brief description for the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB) table",
+          "description": "(Optional) Specify a brief description of the configuration item you want to create in the CMDB table.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "short_description",
-          "tooltip": "(Optional) Specify the brief description for the configuration item based on which you want to create configuration item in the Configuration Management Database (CMDB) table"
+          "tooltip": "(Optional) Specify a brief description of the configuration item you want to create in the CMDB table."
         },
         {
           "title": "Attributes",
-          "description": "(Optional) Specify the data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer. For referenced column, provide value as sys_id which can be retrieved by making an API call through action \"CUSTOM API ENDPOINT\" ",
+          "description": "(Optional) Specify the data attributes of the configuration item you want to create in the CMDB table. The available attributes depend on the specified CMDB class.\nYou can locate the available attributes in the associated CMDB table, which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server, cmdb_ci_mfp_printer, etc. For referenced type attributes, specify the sys_id, of that particular attribute. The \"sys_id\" can be retrieved by making an API call using the \"Custom API Endpoint\" action.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "attributes",
-          "tooltip": "(Optional) Specify the data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer. For referenced column, provide value as sys_id which can be retrieved by making an API call through action \"CUSTOM API ENDPOINT\" "
+          "tooltip": "(Optional) Specify the data attributes of the configuration item you want to create in the CMDB table. The available attributes depend on the specified CMDB class.\nYou can locate the available attributes in the associated CMDB table, which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server, cmdb_ci_mfp_printer, etc. For referenced type attributes, specify the sys_id, of that particular attribute. The \"sys_id\" can be retrieved by making an API call using the \"Custom API Endpoint\" action."
         },
         {
           "title": "Inbound Relations",
-          "description": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item.",
+          "description": "(Optional) Specify a list of objects that define the inbound relations that you want to associate with the configuration item you want to create in the CMDB table.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "inbound_relations",
-          "tooltip": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item."
+          "tooltip": "(Optional) Specify a list of objects that define the inbound relations that you want to associate with the configuration item you want to create in the CMDB table."
         },
         {
           "title": "Outbound Relations",
-          "description": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item.",
+          "description": "(Optional) List of objects that define the outbound relations that you want to associate with the configuration item you want to create in the CMDB table.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "outbound_relations",
-          "tooltip": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item."
+          "tooltip": "(Optional) List of objects that define the outbound relations that you want to associate with the configuration item you want to create in the CMDB table."
         }
       ],
       "output_schema": {
@@ -284,54 +284,54 @@
     {
       "operation": "get_configuration_items",
       "title": "Get Configuration Items",
-      "description": "Retrieves the available configuration items (CI) for a specified Configuration Management Database (CMDB) class (table).",
+      "description": "Retrieves the available configuration items (CI) for a specific ServiceNow Configuration Management Database (CMDB) class (table) based on the class name, query, and other input parameters you have specified.",
       "category": "investigation",
       "annotation": "get_configuration_items",
       "enabled": true,
       "parameters": [
         {
           "title": "Class Name",
-          "description": "Specify the class name of the configuration management database based on which you want to retrieve available configuration items (CI) for a specified Configuration Management Database (CMDB) table.",
+          "description": "Specify the class name of the configuration management database (CMDB) table from which you want to retrieve available configuration items (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "class_name",
           "placeholder": "For e.g cmdb_ci_computer",
-          "tooltip": "Specify the class name of the configuration management database based on which you want to retrieve available configuration items (CI) for a specified Configuration Management Database (CMDB) table."
+          "tooltip": "Specify the class name of the configuration management database (CMDB) table from which you want to retrieve available configuration items (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc."
         },
         {
           "title": "Query",
-          "tooltip": "(Optional) Specify the query using which you want to filter configuration items (CI) for a specified Configuration Management Database (CMDB) table. Syntax: <col_name><operator><value> For e.g. javascript:gs.getUserID()^active=true, etc.",
+          "tooltip": "(Optional) Specify a query using which you can filter the available configuration items (CI) for the specified Configuration Management Database (CMDB) table.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "sysparm_query",
           "placeholder": "For e.g. javascript:gs.getUserID()^active=true, active=true^ORDERBYnumber^ORDERBYDESCcategory, etc.",
-          "description": "(Optional) Specify the query using which you want to filter configuration items (CI) for a specified Configuration Management Database (CMDB) table."
+          "description": "(Optional) Specify a query using which you can filter the available configuration items (CI) for the specified Configuration Management Database (CMDB) table. Syntax: <col_name><operator><value> For e.g. javascript:gs.getUserID()^active=true, etc."
         },
         {
           "title": "Limit",
-          "description": "(Optional) Specify the maximum number of results, per page, that this operation should return. By default, this option is set as 1000.",
+          "description": "(Optional) Specify the maximum number of results, that this operation should return. By default, this option is set as 1000.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "sysparm_limit",
           "value": 1000,
-          "tooltip": "(Optional) The maximum number of records to return. By default, this option is set as 1000"
+          "tooltip": "(Optional) Specify the maximum number of results, that this operation should return. By default, this option is set as 1000."
         },
         {
           "title": "Offset",
-          "description": "(Optional) Index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items. By default, this is set as 0",
+          "description": "(Optional) Specify the index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items, say CIs starting from the 10th CI. By default, this is set as 0.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "sysparm_offset",
           "value": 0,
-          "tooltip": "(Optional) The number of records to skip past. By default, this option is set as 0"
+          "tooltip": "(Optional) Specify the index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items, say CIs starting from the 10th CI. By default, this is set as 0."
         }
       ],
       "output_schema": {
@@ -346,31 +346,31 @@
     {
       "operation": "get_configuration_item_details",
       "title": "Get Configuration Item Details",
-      "description": "Retrieve the attributes and relationship information for a specified configuration item (CI) record.",
+      "description": "Retrieve the attributes and relationship information for a specified configuration item (CI) record based on the class name and system ID you have specified.",
       "category": "investigation",
       "annotation": "get_configuration_item_details",
       "enabled": true,
       "parameters": [
         {
           "title": "Class Name",
-          "description": "Specify the class name of the configuration management database (CMDB) based on which you want to retrieve a specific configuration item (CI) details.",
+          "description": "Specify the class name of the configuration management database (CMDB) table from which you want to retrieve details for the specified configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "class_name",
           "placeholder": "For e.g cmdb_ci_computer",
-          "tooltip": "Specify the class name of the configuration management database (CMDB) based on which you want to retrieve a specific configuration item (CI) details."
+          "tooltip": "Specify the class name of the configuration management database (CMDB) table from which you want to retrieve details for the specified configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc."
         },
         {
           "title": "System ID",
-          "description": "Specify the system ID of the configuration item (CI) based on which you want to retrieve a specific configuration item (CI) details..",
+          "description": "Specify the system ID of the configuration item (CI) you want to retrieve from the specified CMDB table.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "sys_id",
-          "tooltip": "Specify the system ID of the configuration item (CI) based on which you want to retrieve a specific configuration item (CI) details."
+          "tooltip": "Specify the system ID of the configuration item (CI) you want to retrieve from the specified CMDB table."
         }
       ],
       "output_schema": {
@@ -504,41 +504,41 @@
     {
       "operation": "update_configuration_item",
       "title": "Update Configuration Item",
-      "description": "Updates an single configuration item (CI) with the specified outbound and inbound relations within the specified Configuration Management Database (CMDB) table.",
+      "description": "Updates a single configuration item (CI) with the specified outbound and inbound relations within the specified ServiceNow Configuration Management Database (CMDB) table based on the class name, system ID, discovery name, and other input parameters you have specified.",
       "category": "investigation",
       "annotation": "update_configuration_item",
       "enabled": true,
       "parameters": [
         {
           "title": "Class Name",
-          "description": "Specify the class name of the configuration management database (CMDB) based on which you want to update configuration item (CI) details. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server.",
+          "description": "Specify the class name of the configuration management database (CMDB) table in which you want to update the specified configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "class_name",
           "placeholder": "For e.g cmdb_ci_computer",
-          "tooltip": "Specify the class name of the configuration management database (CMDB) based on which you want to update configuration item (CI) details. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
+          "tooltip": "Specify the class name of the configuration management database (CMDB) table in which you want to update the specified configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc."
         },
         {
           "title": "System ID",
-          "description": "Specify the system ID of the configuration item (CI) based on which you want to update configuration item (CI) details.",
+          "description": "Specify the system ID of the configuration item (CI) you want to update in the specified CMDB table.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "sys_id",
-          "tooltip": "Specify the system ID of the configuration item (CI) based on which you want to update configuration item (CI) details."
+          "tooltip": "Specify the system ID of the configuration item (CI) you want to update in the specified CMDB table."
         },
         {
           "title": "Discovery Source",
-          "description": "Select a discovery source of the configuration item (CI) based on which you want to update configuration item (CI) details. You can choose from the following options: ACC-Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
+          "description": "Select a discovery source of the configuration item (CI) you want to update in the CMDB table. You can choose from the options such as ACC- Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "select",
           "name": "source",
-          "tooltip": "Select a discovery source of the configuration item (CI) based on which you want to update configuration item (CI) details. You can choose from the following options: ACC-Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
+          "tooltip": "Select a discovery source of the configuration item (CI) you want to update in the CMDB table. You can choose from the options such as ACC- Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
           "options": [
             "ACC-Visibility",
             "AgentClientCollector",
@@ -562,33 +562,33 @@
         },
         {
           "title": "Configuration Item Name",
-          "description": "(Optional) Specify the name of the configuration item based on which you want to update configuration item in the Configuration Management Database (CMDB)",
+          "description": "(Optional) Specify the name of the configuration item that you want to update in the CMDB table.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "name",
-          "tooltip": "(Optional) Specify the name of the configuration item based on which you want to update configuration item in the Configuration Management Database (CMDB)"
+          "tooltip": "(Optional) Specify the name of the configuration item that you want to update in the CMDB table."
         },
         {
           "title": "Description",
-          "description": "(Optional) Specify the brief description for the configuration item based on which you want to update configuration item in the Configuration Management Database (CMDB)",
+          "description": "(Optional) Specify a brief description of the configuration item you want to update in the CMDB table.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "short_description",
-          "tooltip": "(Optional) Specify the brief description for the configuration item based on which you want to update configuration item in the Configuration Management Database (CMDB)"
+          "tooltip": "(Optional) Specify a brief description of the configuration item you want to update in the CMDB table."
         },
         {
           "title": "Attributes",
-          "description": "(Optional) Specify the data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer. For referenced column, provide value as sys_id which can be retrieved by making an API call through action \"CUSTOM API ENDPOINT\" ",
+          "description": "(Optional) Specify the data attributes of the configuration item you want to update in the CMDB table. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table, which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server, cmdb_ci_mfp_printer, etc. For referenced type attributes, specify the sys_id, of that particular attribute. The \"sys_id\" can be retrieved by making an API call using the \"Custom API Endpoint\" action.\"",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "attributes",
-          "tooltip": "(Optional) Specify the data attributes to define in the Configuration Item record. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server or cmdb_ci_mfp_printer. For referenced column, provide value as sys_id which can be retrieved by making an API call through action \"CUSTOM API ENDPOINT\" "
+          "tooltip": "(Optional) Specify the data attributes of the configuration item you want to update in the CMDB table. The available attributes depend on the specified CMDB class. You can locate the available attributes in the associated CMDB table, which typically begins with \"cmdb_ci\", such as cmdb_ci_linux_server, cmdb_ci_mfp_printer, etc. For referenced type attributes, specify the sys_id, of that particular attribute. The \"sys_id\" can be retrieved by making an API call using the \"Custom API Endpoint\" action.\""
         }
       ],
       "output_schema": {
@@ -722,32 +722,32 @@
     {
       "operation": "get_cmdb_rel_type",
       "title": "Get CMDB Relation Type",
-      "description": "Retrieves the list of all relation type of the Configuration Management Database (CMDB) class (table) based on the input parameters that you have specified.",
+      "description": "Retrieves a list of all relation types of the Configuration Management Database (CMDB) class (table).",
       "category": "investigation",
       "annotation": "get_cmdb_rel_type",
       "enabled": true,
       "parameters": [
         {
           "title": "Limit",
-          "description": "(Optional) Specify the maximum number of results, per page, that this operation should return. By default, this option is set as 1000.",
+          "description": "(Optional) Specify the maximum number of results, that this operation should return. By default, this option is set as 1000.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "sysparm_limit",
           "value": 1000,
-          "tooltip": "(Optional) The maximum number of records to return. By default, this option is set as 1000"
+          "tooltip": "(Optional) Specify the maximum number of results, that this operation should return. By default, this option is set as 1000."
         },
         {
           "title": "Offset",
-          "description": "(Optional) Index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items. By default, this is set as 0",
+          "description": "(Optional) Specify the index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items, say CIs starting from the 10th relation type. By default, this is set as 0.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "sysparm_offset",
           "value": 0,
-          "tooltip": "(Optional) The number of records to skip past. By default, this option is set as 0"
+          "tooltip": "(Optional) Specify the index of the first item to be returned by this operation. This parameter is useful for pagination and for getting a subset of items, say CIs starting from the 10th relation type. By default, this is set as 0."
         }
       ],
       "output_schema": {
@@ -783,14 +783,14 @@
     {
       "operation": "get_cmdb_rel_type_by_sys_id",
       "title": "Get CMDB Relation Type by System ID",
-      "description": "Retrieves the specific relation type for a specified system ID of the Configuration Management Database (CMDB) class (table).",
+      "description": "Retrieves the relation type for a specified system ID of the Configuration Management Database (CMDB) class (table).",
       "category": "investigation",
       "annotation": "get_cmdb_rel_type_by_sys_id",
       "enabled": true,
       "parameters": [
         {
           "title": "System ID",
-          "description": "Specify the system ID of the configuration item (CI) based on which you want to retrieve a specific relation type from Configuration Management Database (CMDB) class (table).",
+          "description": "Specify the system ID of the configuration item (CI) for which you want to retrieve the relation type from the CMDB class (table).",
           "required": true,
           "editable": true,
           "visible": true,
@@ -829,41 +829,41 @@
     {
       "operation": "add_relation_to_configuration_item",
       "title": "Add Relation to Configuration Item",
-      "description": "Adds an inbound and/or outbound relation to the specified configuration item (CI), the specified configuration item is the parent",
+      "description": "Adds an inbound and/or outbound relation to the specified configuration item (CI) in the specified ServiceNow Configuration Management Database (CMDB) table based on the class name, system ID, discovery name, and other input parameters you have specified. NOTE: The specified configuration item will act as the parent or the relation.",
       "category": "investigation",
       "annotation": "add_relation_to_configuration_item",
       "enabled": true,
       "parameters": [
         {
           "title": "Class Name",
-          "description": "Specify the class name of the Configuration Management Database based on which you want to add relation to the configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server.",
+          "description": "Specify the class name of the configuration management database (CMDB) table to which you want to add the specified relation. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "class_name",
           "placeholder": "For e.g cmdb_ci_computer",
-          "tooltip": "Specify the class name of the Configuration Management Database class based on which you want to add relation to the configuration item (CI). This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server or cmdb_ci_apache_web_server."
+          "tooltip": "Specify the class name of the configuration management database (CMDB) table to which you want to add the specified relation. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc."
         },
         {
           "title": "System ID",
-          "description": "Specify the ID of the system of the configuration item (CI) based on which you want to add relation to the configuration item (CI).",
+          "description": "Specify the system ID of the configuration item (CI) to which you want to add the specified relation.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "sys_id",
-          "tooltip": "Specify the ID of the system of the configuration item (CI) based on which you want to add relation to the configuration item (CI)."
+          "tooltip": "Specify the system ID of the configuration item (CI) to which you want to add the specified relation."
         },
         {
           "title": "Discovery Source",
-          "description": "Select a discovery source of the configuration item (CI) based on which you want to add relation to the configuration item (CI). You can choose from the following options: ACC-Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
+          "description": "Select a discovery source of the configuration item (CI) to which you want to add the specified relation. You can choose from the options such as ACC- Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "select",
           "name": "source",
-          "tooltip": "Select a discovery source of the configuration item (CI) based on which you want to add relation to the configuration item (CI). You can choose from the following options: ACC-Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
+          "tooltip": "Select a discovery source of the configuration item (CI) to which you want to add the specified relation. You can choose from the options such as ACC- Visibility, AgentClientCollector, Altiris, Cloud Insights Billing, etc.",
           "options": [
             "ACC-Visibility",
             "AgentClientCollector",
@@ -887,23 +887,23 @@
         },
         {
           "title": "Inbound Relations",
-          "description": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item.",
+          "description": "(Optional) Specify a list of objects that define the inbound relations you want to add to the specified configuration item. NOTE: You must specify either the inbound relation or outbound relation to the specified CI. You can also specify both inbound and outbound relations to the specified CI.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "inbound_relations",
-          "tooltip": "(Optional) List of objects that define the inbound relations to associate with the Configuration Item."
+          "tooltip": "(Optional) Specify a list of objects that define the inbound relations you want to add to the specified configuration item. NOTE: You must specify either the inbound relation or outbound relation to the specified CI. You can also specify both inbound and outbound relations to the specified CI."
         },
         {
           "title": "Outbound Relations",
-          "description": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item.",
+          "description": "(Optional) Specify a list of objects that define the outbound relations you want to add to the specified configuration item. NOTE: Y You must specify either the inbound relation or outbound relation to the specified CI. You can also specify both inbound and outbound relations to the specified CI.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "outbound_relations",
-          "tooltip": "(Optional) List of objects that define the outbound relations to associate with the Configuration Item."
+          "tooltip": "(Optional) Specify a list of objects that define the outbound relations you want to add to the specified configuration item. NOTE: Y You must specify either the inbound relation or outbound relation to the specified CI. You can also specify both inbound and\n   outbound relations to the specified CI."
         }
       ],
       "output_schema": {
@@ -1037,41 +1037,41 @@
     {
       "operation": "delete_relation_for_configuration_item",
       "title": "Delete Relation for Configuration Item",
-      "description": "Deletes the relation for the specified configuration item (CI).",
+      "description": "Deletes the specified relation from the specified configuration item (CI) in the specified ServiceNow Configuration Management Database (CMDB) table based on the class name, system ID, and relation system ID you have specified.",
       "category": "investigation",
       "annotation": "delete_relation_for_configuration_item",
       "enabled": true,
       "parameters": [
         {
           "title": "Class Name",
-          "description": "Specify the class name of the configuration management database (CMDB) based on which you want to remove relation for the configuration item (CI).",
+          "description": "Specify the class name of the configuration management database (CMDB) table from which you want to delete the specified relation. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "class_name",
           "placeholder": "For e.g cmdb_ci_computer",
-          "tooltip": "Specify the class name of the configuration management database (CMDB) based on which you want to remove relation for the configuration item (CI)."
+          "tooltip": "Specify the class name of the configuration management database (CMDB) table from which you want to delete the specified relation. This is the name of the table that contains the desired CI records, such as cmdb_ci_linux_server, cmdb_ci_apache_web_server, etc."
         },
         {
           "title": "System ID",
-          "description": "Specify the system ID of the configuration item (CI) based on which you want to remove relation for the configuration item (CI).",
+          "description": "Specify the system ID of the configuration item (CI) from which you want to delete the specified relation.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "sys_id",
-          "tooltip": "Specify the system ID of the configuration item (CI) based on which you want to remove relation for the configuration item (CI)."
+          "tooltip": "Specify the system ID of the configuration item (CI) from which you want to delete the specified relation."
         },
         {
           "title": "Relation System ID",
-          "description": "Specify the system ID of the relation based on which you want to remove relation for the configuration item (CI).",
+          "description": "Specify the system ID of the relation that you want to delete from the specified configuration item (CI).",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "rel_sys_id",
-          "tooltip": "Specify the system ID of the relation based on which you want to remove relation for the configuration item (CI)."
+          "tooltip": "Specify the system ID of the relation that you want to delete from the specified configuration item (CI)."
         }
       ],
       "output_schema": {
@@ -1219,8 +1219,8 @@
           "type": "text",
           "name": "endpoint",
           "placeholder": "https://<server_url>/api/now/table/cmdb_rel_type",
-          "description": "API Endpoint for ServiceNow CMDB that can start with https://<server_url>/api/now/table/cmdb_rel_type, using which you want to make the API call.",
-          "tooltip": "API Endpoint for ServiceNow CMDB that can start with https://<server_url>/api/now/table/cmdb_rel_type, using which you want to make the API call."
+          "description": "Specify the API Endpoint using which you want to make the API call. NOTE: The API endpoint for ServiceNow CMDB must be specified in the following format: https://<server_url>/api/now/table/cmdb_rel_type.",
+          "tooltip": "Specify the API Endpoint using which you want to make the API call. NOTE: The API endpoint for ServiceNow CMDB must be specified in the following format: https://<server_url>/api/now/table/cmdb_rel_type."
         },
         {
           "title": "HTTP method",
@@ -1235,17 +1235,18 @@
             "GET",
             "POST"
           ],
-          "tooltip": "NOTE: For \"GET\" method, provide query parameter and for \"POST\" method, provide request body."
+          "tooltip": "Select the HTTP method to be used for the API call. You can choose between GET or POST."
         },
         {
           "title": "Request Parameters/Body",
+          "tooltip": "(Optional) Specify the 'Request Parameters' or the 'Request Body' that you want to send with the GET or POST API call respectively.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "body",
           "placeholder": "{}",
-          "description": "(Optional) GET/POST request body that you want to send with the API call request."
+          "description": "(Optional) Specify the 'Request Parameters' or the 'Request Body' that you want to send with the GET or POST API call respectively."
         }
       ]
     }
